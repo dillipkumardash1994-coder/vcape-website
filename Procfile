@@ -1,1 +1,1 @@
-web: gunicorn vcape_website.wsgi
+web: gunicorn core.wsgi
