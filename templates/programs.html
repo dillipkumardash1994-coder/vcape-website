@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% block title %}Programs | V-CAPE Mentorship{% endblock %}
+
+{% block content %}
+
+<!-- ================= PAGE HERO ================= -->
+<section class="bg-gradient-to-r from-[#0F2A44] to-[#1E3A8A] text-white">
+    <div class="max-w-7xl mx-auto px-6 py-24 text-center">
+        <h1 class="text-4xl md:text-5xl font-semibold">
+            Our Mentorship Programs
+        </h1>
+        <p class="mt-6 text-lg text-slate-200 max-w-3xl mx-auto">
+            Structured programs designed to guide learners through academic,
+            career, and professional development journeys.
+        </p>
+    </div>
+</section>
+
+<!-- ================= PROGRAM INTRO ================= -->
+<section class="bg-white">
+    <div class="max-w-7xl mx-auto px-6 py-20 text-center max-w-4xl">
+        <p class="text-slate-600 text-lg leading-relaxed">
+            At V-CAPE Mentorship, our programs are carefully curated to address
+            the evolving academic and professional needs of learners. Each program
+            blends expert guidance, structured learning, and personalized support.
+        </p>
+    </div>
+</section>
+
+<!-- ================= PROGRAMS ================= -->
+<section class="bg-[#F8FAFC]">
+    <div class="max-w-7xl mx-auto px-6 py-24">
+
+        <div class="grid md:grid-cols-3 gap-12">
+
+            {% for program in programs %}
+            <div class="bg-white p-10 rounded-xl shadow-sm hover:shadow-lg transition">
+
+                <!-- Title -->
+                <h3 class="text-xl font-semibold mb-4">
+                    {{ program.title }}
+                </h3>
+
+                <!-- Description -->
+                <p class="text-slate-600 mb-6 text-justify">
+                    {{ program.description }}
+                </p>
+
+                <!-- Bullet points (optional) -->
+                {% if program.bullet_list %}
+                <ul class="text-slate-600 space-y-2 mb-6 text-sm">
+                    {% for point in program.bullet_list %}
+                        <li>{{ point }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+
+
+                <!-- CTA -->
+                <a href="/contact/"
+                   class="text-blue-700 font-medium hover:underline">
+                    Enquire →
+                </a>
+
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ================= PROGRAM METHODOLOGY ================= -->
+<section class="bg-white">
+    <div class="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center">
+
+        <div>
+            <h2 class="text-3xl font-semibold mb-6">
+                Our Mentorship Methodology
+            </h2>
+            <p class="text-slate-600 leading-relaxed mb-6">
+                Each program follows a structured mentorship framework that ensures
+                learners receive consistent guidance, measurable progress, and
+                personalized support throughout their journey.
+            </p>
+            <ul class="space-y-3 text-slate-600">
+                <li>✔ One-on-one mentoring sessions</li>
+                <li>✔ Structured learning plans</li>
+                <li>✔ Continuous progress review</li>
+                <li>✔ Outcome-oriented guidance</li>
+            </ul>
+        </div>
+
+        <div class="bg-[#F8FAFC] p-10 rounded-xl shadow-sm">
+            <h3 class="text-xl font-semibold mb-4">
+                Who Can Benefit?
+            </h3>
+            <ul class="space-y-3 text-slate-600">
+                <li>• School & college students</li>
+                <li>• Graduates & early professionals</li>
+                <li>• Career transition aspirants</li>
+                <li>• Lifelong learners</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="bg-gradient-to-r from-[#0F2A44] to-[#1E3A8A] text-white">
+    <div class="max-w-7xl mx-auto px-6 py-24 text-center">
+        <h2 class="text-3xl font-semibold">
+            Find the Right Program for You
+        </h2>
+        <p class="mt-4 text-slate-200 max-w-xl mx-auto">
+            Get in touch with our team to explore programs aligned
+            with your goals and aspirations.
+        </p>
+        <a href="/contact/"
+           class="inline-block mt-8 px-8 py-3 bg-white text-[#0F2A44] font-medium rounded-lg hover:bg-slate-100">
+            Contact Us
+        </a>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}{{ post.title }} | V-CAPE Mentorship{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO IMAGE ================= -->
+{% if post.image %}
+<section class="bg-black">
+    <div class="max-w-6xl mx-auto px-6 pt-20">
+        <img src="{{ post.image.url }}"
+             alt="{{ post.title }}"
+             class="w-full max-h-[520px] object-cover rounded-xl">
+    </div>
+</section>
+{% endif %}
+
+<!-- ================= ARTICLE HEADER ================= -->
+<section class="bg-white">
+    <div class="max-w-3xl mx-auto px-6 pt-16 text-center">
+
+        <!-- Category -->
+        <div class="text-sm uppercase tracking-widest text-slate-500 mb-4">
+            {{ post.category }}
+        </div>
+
+        <!-- Title -->
+        <h1 class="text-4xl md:text-5xl font-semibold leading-tight text-slate-900">
+            {{ post.title }}
+        </h1>
+
+        <!-- Meta -->
+        <div class="mt-6 text-slate-500 text-sm">
+            {{ post.created_at|date:"F j, Y" }} · By {{ post.author }}
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= ARTICLE CONTENT ================= -->
+<section class="bg-white">
+    <div class="max-w-3xl mx-auto px-6 py-20">
+
+        <article class="prose prose-slate max-w-none prose-lg prose-headings:font-semibold prose-headings:text-slate-900 prose-p:text-slate-700 prose-p:leading-relaxed prose-a:text-blue-700 hover:prose-a:underline">
+
+            {{ post.content|linebreaks }}
+
+        </article>
+
+    </div>
+</section>
+
+<!-- ================= BACK TO BLOG ================= -->
+<section class="bg-[#F8FAFC] border-t">
+    <div class="max-w-7xl mx-auto px-6 py-16 text-center">
+        <a href="{% url 'blog_list' %}"
+           class="text-blue-700 font-medium hover:underline">
+            ← Back to Blog
+        </a>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% block title %}Our Team | V-CAPE Mentorship{% endblock %}
+
+{% block content %}
+
+<!-- ================= PAGE HERO ================= -->
+<section class="bg-gradient-to-r from-[#0F2A44] to-[#1E3A8A] text-white">
+    <div class="max-w-7xl mx-auto px-6 py-24 text-center">
+        <h1 class="text-4xl md:text-5xl font-semibold">
+            Our Leadership & Mentors
+        </h1>
+        <p class="mt-6 text-lg text-slate-200 max-w-3xl mx-auto">
+            A dedicated team of educators, mentors, and professionals
+            committed to guiding learners toward success.
+        </p>
+    </div>
+</section>
+
+<!-- ================= TEAM INTRO ================= -->
+<section class="bg-white">
+    <div class="max-w-5xl mx-auto px-6 py-20 text-center">
+        <p class="text-slate-600 text-lg leading-relaxed">
+            The strength of V-CAPE Mentorship lies in its people. Our team brings
+            together academic expertise, professional experience, and a passion
+            for mentorship to support learners at every stage of their journey.
+        </p>
+    </div>
+</section>
+
+<!-- ================= LEADERSHIP TEAM ================= -->
+<section class="bg-[#F8FAFC]">
+    <div class="max-w-7xl mx-auto px-6 py-24">
+
+        <h2 class="text-3xl font-semibold text-center mb-16">
+            Core Leadership
+        </h2>
+
+        <div class="grid justify-center gap-10 
+            grid-cols-[repeat(auto-fit,minmax(220px,1fr))] 
+            max-w-5xl mx-auto">
+
+            {% for member in leadership %}
+            <div class="bg-white p-8 rounded-xl shadow-sm text-center hover:shadow-lg transition">
+                {% if member.photo %}
+                <img src="{{ member.photo.url }}"
+                     alt="{{ member.name }}"
+                     class="w-40 h-40 mx-auto rounded-full object-cover mb-6">
+                {% endif %}
+
+                <h3 class="text-xl font-semibold">{{ member.name }}</h3>
+                <p class="text-blue-700 font-medium">{{ member.designation }}</p>
+                <p class="text-slate-600 mt-4 text-sm leading-relaxed">
+                    {{ member.bio }}
+                </p>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= ADVISORY BOARD ================= -->
+<section class="bg-white">
+    <div class="max-w-7xl mx-auto px-6 py-24">
+
+        <h2 class="text-3xl font-semibold text-center mb-16">
+            Advisory Board
+        </h2>
+
+        <div class="grid justify-center gap-10 
+            grid-cols-[repeat(auto-fit,minmax(220px,1fr))] 
+            max-w-5xl mx-auto">
+
+            {% for member in advisors %}
+            <div class="bg-[#F8FAFC] p-6 rounded-xl text-center hover:shadow-lg transition">
+                {% if member.photo %}
+                <img src="{{ member.photo.url }}"
+                     alt="{{ member.name }}"
+                     class="w-28 h-28 mx-auto rounded-full object-cover mb-4">
+                {% endif %}
+
+                <h4 class="font-semibold">{{ member.name }}</h4>
+                <p class="text-sm text-slate-600">{{ member.designation }}</p>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= MENTORSHIP NETWORK ================= -->
+<section class="bg-[#F8FAFC]">
+    <div class="max-w-7xl mx-auto px-6 py-24">
+
+        <h2 class="text-3xl font-semibold text-center mb-16">
+            Mentorship Network
+        </h2>
+
+        <div class="grid justify-center gap-10 
+            grid-cols-[repeat(auto-fit,minmax(220px,1fr))] 
+            max-w-5xl mx-auto">
+
+            {% for member in mentors %}
+            <div class="bg-white p-6 rounded-xl text-center hover:shadow-lg transition">
+                {% if member.photo %}
+                <img src="{{ member.photo.url }}"
+                     alt="{{ member.name }}"
+                     class="w-28 h-28 mx-auto rounded-full object-cover mb-4">
+                {% endif %}
+
+                <h4 class="font-semibold">{{ member.name }}</h4>
+                <p class="text-sm text-slate-600">{{ member.designation }}</p>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= TEAM VALUES ================= -->
+{% if philosophy %}
+<section class="bg-white">
+    <div class="max-w-4xl mx-auto px-6 py-24 text-center">
+        <h2 class="text-3xl font-semibold mb-6">
+            Our People Philosophy
+        </h2>
+        <p class="text-slate-600 leading-relaxed">
+            {{ philosophy.content }}
+        </p>
+    </div>
+</section>
+{% endif %}
+
+<!-- ================= CTA ================= -->
+<section class="bg-gradient-to-r from-[#0F2A44] to-[#1E3A8A] text-white">
+    <div class="max-w-7xl mx-auto px-6 py-24 text-center">
+        <h2 class="text-3xl font-semibold">
+            Learn With the Right Mentors
+        </h2>
+        <p class="mt-4 text-slate-200 max-w-xl mx-auto">
+            Connect with our team and explore mentorship programs
+            designed to guide your journey.
+        </p>
+        <a href="/contact/"
+           class="inline-block mt-8 px-8 py-3 bg-white text-[#0F2A44] font-medium rounded-lg hover:bg-slate-100">
+            Contact Us
+        </a>
+    </div>
+</section>
+
+{% endblock %}

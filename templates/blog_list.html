@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}Blog | V-CAPE Mentorship{% endblock %}
+
+{% block content %}
+
+<!-- ================= PAGE HERO ================= -->
+<section class="bg-gradient-to-r from-[#0F2A44] to-[#1E3A8A] text-white">
+    <div class="max-w-7xl mx-auto px-6 py-24 text-center">
+        <h1 class="text-4xl md:text-5xl font-semibold">
+            Insights & Reflections
+        </h1>
+        <p class="mt-6 text-lg text-slate-200 max-w-3xl mx-auto">
+            Thoughtful writing on education, mentorship, careers, and
+            purposeful professional journeys.
+        </p>
+    </div>
+</section>
+
+<!-- ================= BLOG LIST ================= -->
+<section class="bg-white">
+    <div class="max-w-7xl mx-auto px-6 py-24">
+
+        <div class="grid md:grid-cols-3 gap-14">
+
+            {% for post in posts %}
+            <article class="group">
+
+                <!-- Image -->
+                {% if post.image %}
+                <div class="overflow-hidden rounded-xl mb-6">
+                    <img src="{{ post.image.url }}"
+                         alt="{{ post.title }}"
+                         class="w-full h-56 object-cover group-hover:scale-105 transition duration-300">
+                </div>
+                {% endif %}
+
+                <!-- Category -->
+                <p class="text-xs uppercase tracking-wide text-blue-700 font-medium mb-2">
+                    {{ post.category }}
+                </p>
+
+                <!-- Title -->
+                <h2 class="text-xl font-semibold leading-snug mb-3">
+                    <a href="{% url 'blog_detail' post.slug %}"
+                       class="hover:text-blue-700 transition">
+                        {{ post.title }}
+                    </a>
+                </h2>
+
+                <!-- Meta -->
+                <p class="text-sm text-slate-500 mb-4">
+                    {{ post.created_at|date:"F d, Y" }} · {{ post.author }}
+                </p>
+
+                <!-- Short Description -->
+                <p class="text-slate-600 leading-relaxed mb-6 line-clamp-3">
+                    {{ post.short_description }}
+                </p>
+
+                <!-- Read More -->
+                <a href="{% url 'blog_detail' post.slug %}"
+                   class="text-blue-700 font-medium hover:underline">
+                    Read more →
+                </a>
+
+            </article>
+            {% empty %}
+            <p class="text-slate-600">No blog posts available.</p>
+            {% endfor %}
+
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}

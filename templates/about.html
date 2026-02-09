@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% block title %}About Us | {{ site_settings.institute_name }}{% endblock %}
+
+{% block content %}
+
+<!-- ================= PAGE HERO ================= -->
+<section class="bg-gradient-to-r from-[#0F2A44] to-[#1E3A8A] text-white">
+    <div class="max-w-7xl mx-auto px-6 py-24 text-center">
+        <h1 class="text-4xl md:text-5xl font-semibold">
+            About {{ site_settings.institute_name }}
+        </h1>
+        <p class="mt-6 text-lg text-slate-200 max-w-3xl mx-auto">
+            Vedanta – Centre for Academic & Professional Mentorship Excellence
+            is dedicated to empowering learners through structured mentorship
+            and expert guidance.
+        </p>
+    </div>
+</section>
+
+<!-- ================= WHO WE ARE / PURPOSE ================= -->
+<section class="bg-white">
+    <div class="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-center">
+
+        <div>
+            <h2 class="text-3xl font-semibold mb-6">
+                Our Purpose
+            </h2>
+
+            {% if about_content and about_content.purpose %}
+                <p class="text-slate-600 leading-relaxed text-justify">
+                    {{ about_content.purpose }}
+                </p>
+            {% else %}
+                <p class="text-slate-600 leading-relaxed">
+                    Purpose content will be updated soon.
+                </p>
+            {% endif %}
+        </div>
+
+        <div class="bg-[#F8FAFC] p-10 rounded-xl shadow-sm">
+            <h3 class="text-xl font-semibold mb-4">
+                Our Approach
+            </h3>
+            <ul class="space-y-3 text-slate-600">
+                <li>✔ Learner-centric mentorship</li>
+                <li>✔ Structured academic guidance</li>
+                <li>✔ Career-aligned planning</li>
+                <li>✔ Continuous mentor support</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= MISSION & VISION ================= -->
+<section class="bg-[#F8FAFC]">
+    <div class="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-14">
+
+        <!-- Mission -->
+        <div class="bg-white p-10 rounded-xl shadow-sm">
+            <h3 class="text-2xl font-semibold mb-4">Our Mission</h3>
+
+            {% if about_content and about_content.mission %}
+                <p class="text-slate-600 leading-relaxed text-justify">
+                    {{ about_content.mission }}
+                </p>
+            {% else %}
+                <p class="text-slate-600 leading-relaxed">
+                    Mission content will be updated soon.
+                </p>
+            {% endif %}
+        </div>
+
+        <!-- Vision -->
+        <div class="bg-white p-10 rounded-xl shadow-sm">
+            <h3 class="text-2xl font-semibold mb-4">Our Vision</h3>
+
+            {% if about_content and about_content.vision %}
+                <p class="text-slate-600 leading-relaxed text-justify">
+                    {{ about_content.vision }}
+                </p>
+            {% else %}
+                <p class="text-slate-600 leading-relaxed">
+                    Vision content will be updated soon.
+                </p>
+            {% endif %}
+        </div>
+
+    </div>
+</section>
+
+<!-- ================= CORE VALUES (STATIC) ================= -->
+<section class="bg-white">
+    <div class="max-w-7xl mx-auto px-6 py-24">
+
+        <div class="text-center max-w-3xl mx-auto">
+            <h2 class="text-3xl font-semibold">Our Core Values</h2>
+            <p class="mt-4 text-slate-600">
+                Principles that guide our mentorship philosophy and practices.
+            </p>
+        </div>
+
+        <div class="mt-16 grid md:grid-cols-4 gap-10">
+
+            <div class="bg-[#F8FAFC] p-8 rounded-xl shadow-sm hover:shadow-lg transition">
+                <h4 class="text-lg font-semibold mb-3">Integrity</h4>
+                <p class="text-slate-600 text-sm">
+                    Honest guidance grounded in ethical academic and professional standards.
+                </p>
+            </div>
+
+            <div class="bg-[#F8FAFC] p-8 rounded-xl shadow-sm hover:shadow-lg transition">
+                <h4 class="text-lg font-semibold mb-3">Excellence</h4>
+                <p class="text-slate-600 text-sm">
+                    Commitment to high-quality mentorship and continuous improvement.
+                </p>
+            </div>
+
+            <div class="bg-[#F8FAFC] p-8 rounded-xl shadow-sm hover:shadow-lg transition">
+                <h4 class="text-lg font-semibold mb-3">Inclusivity</h4>
+                <p class="text-slate-600 text-sm">
+                    Accessible mentorship for learners from diverse backgrounds.
+                </p>
+            </div>
+
+            <div class="bg-[#F8FAFC] p-8 rounded-xl shadow-sm hover:shadow-lg transition">
+                <h4 class="text-lg font-semibold mb-3">Growth</h4>
+                <p class="text-slate-600 text-sm">
+                    Encouraging lifelong learning and professional development.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="bg-gradient-to-r from-[#0F2A44] to-[#1E3A8A] text-white">
+    <div class="max-w-7xl mx-auto px-6 py-24 text-center">
+        <h2 class="text-3xl font-semibold">
+            Join Our Mentorship Ecosystem
+        </h2>
+        <p class="mt-4 text-slate-200 max-w-xl mx-auto">
+            Discover how {{ site_settings.institute_name }} can support your academic
+            and professional journey.
+        </p>
+        <a href="/programs/"
+           class="inline-block mt-8 px-8 py-3 bg-white text-[#0F2A44] font-medium rounded-lg hover:bg-slate-100">
+            Explore Programs
+        </a>
+    </div>
+</section>
+
+{% endblock %}
