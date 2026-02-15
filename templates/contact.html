@@ -1,4 +1,5 @@
-{% extends 'base.html' %}
+{% extends "frontend_base.html" %}
+
 {% block title %}Contact Us | V-CAPE Mentorship{% endblock %}
 
 {% block content %}
@@ -63,38 +64,7 @@
 <section class="bg-[#F8FAFC]">
     <div class="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-16 items-start">
 
-        <!-- Contact Form -->
-        <div class="bg-white p-10 rounded-xl shadow-sm">
-            <h2 class="text-2xl font-semibold mb-6">
-                Send Us a Message
-            </h2>
-
-            <form method="post">
-                {% csrf_token %}
-
-                <div class="space-y-5">
-
-                    <input type="text" name="name" placeholder="Full Name"
-                           class="w-full border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-700">
-
-                    <input type="email" name="email" placeholder="Email Address"
-                           class="w-full border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-700">
-
-                    <input type="text" name="subject" placeholder="Subject"
-                           class="w-full border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-700">
-
-                    <textarea name="message" rows="5" placeholder="Your Message"
-                              class="w-full border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-700"></textarea>
-
-                    <button type="submit"
-                            class="bg-blue-700 text-white px-6 py-3 rounded-lg hover:bg-blue-800 transition">
-                        Submit Message
-                    </button>
-
-                </div>
-            </form>
-        </div>
-
+        
        <!-- Google Map -->
         <div class="bg-white p-4 rounded-xl shadow-sm">
             <div class="relative w-full pb-[56.25%] rounded-lg overflow-hidden">

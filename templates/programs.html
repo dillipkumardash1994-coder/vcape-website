@@ -1,4 +1,5 @@
-{% extends 'base.html' %}
+{% extends "frontend_base.html" %}
+
 {% block title %}Programs | V-CAPE Mentorship{% endblock %}
 
 {% block content %}
@@ -29,38 +30,47 @@
 
 <!-- ================= PROGRAMS ================= -->
 <section class="bg-[#F8FAFC]">
-    <div class="max-w-7xl mx-auto px-6 py-24">
+    <div class="max-w-5xl mx-auto px-6 py-20">
 
-        <div class="grid md:grid-cols-3 gap-12">
+        <h2 class="text-3xl font-bold text-center mb-12">
+            Our Programs
+        </h2>
+
+        <div class="space-y-4">
 
             {% for program in programs %}
-            <div class="bg-white p-10 rounded-xl shadow-sm hover:shadow-lg transition">
+            <div class="bg-white rounded-xl shadow-sm border">
 
-                <!-- Title -->
-                <h3 class="text-xl font-semibold mb-4">
+                <!-- Program Title (Clickable) -->
+                <button class="w-full flex justify-between items-center px-6 py-5 text-left font-semibold text-lg program-toggle">
                     {{ program.title }}
-                </h3>
+                    <span class="arrow transition-transform duration-300 text-2xl">+</span>
+                </button>
 
-                <!-- Description -->
-                <p class="text-slate-600 mb-6 text-justify">
-                    {{ program.description }}
-                </p>
+                <!-- Hidden Content -->
+                <div class="program-content hidden px-6 pb-6">
 
-                <!-- Bullet points (optional) -->
-                {% if program.bullet_list %}
-                <ul class="text-slate-600 space-y-2 mb-6 text-sm">
-                    {% for point in program.bullet_list %}
-                        <li>{{ point }}</li>
-                    {% endfor %}
-                </ul>
-                {% endif %}
+                    <!-- Description -->
+                    <p class="text-slate-600 mb-6 text-justify">
+                        {{ program.description }}
+                    </p>
 
+                    <!-- Bullet points -->
+                    {% if program.bullet_list %}
+                    <ul class="text-slate-600 space-y-2 mb-6 text-sm list-disc pl-5">
+                        {% for point in program.bullet_list %}
+                            <li>{{ point }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
 
-                <!-- CTA -->
-                <a href="/contact/"
-                   class="text-blue-700 font-medium hover:underline">
-                    Enquire →
-                </a>
+                    <!-- CTA -->
+                    <a href="/contact/"
+                       class="text-blue-700 font-medium hover:underline">
+                        Enquire →
+                    </a>
+
+                </div>
 
             </div>
             {% endfor %}
@@ -69,6 +79,31 @@
 
     </div>
 </section>
+<script>
+    const toggles = document.querySelectorAll('.program-toggle');
+
+    toggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+
+            const content = toggle.nextElementSibling;
+            const arrow = toggle.querySelector('.arrow');
+
+            // Close other open sections (optional professional touch)
+            document.querySelectorAll('.program-content').forEach(item => {
+                if (item !== content) {
+                    item.classList.add('hidden');
+                    item.previousElementSibling.querySelector('.arrow').textContent = '+';
+                }
+            });
+
+            // Toggle current
+            content.classList.toggle('hidden');
+
+            arrow.textContent = content.classList.contains('hidden') ? '+' : '−';
+        });
+    });
+</script>
+
 
 
 <!-- ================= PROGRAM METHODOLOGY ================= -->
