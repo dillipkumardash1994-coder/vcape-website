@@ -23,14 +23,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-d7nz8qn0abmiux6o=cur5ec5&=wj(!9lu_k#q-m3se61ng&nyj'
-#SECRET_KEY = os.environ.get('SECRET_KEY') #Added before deployment in internet
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #Modified before deployment in internet
+DEBUG = False #Modified before deployment in internet
 
 ALLOWED_HOSTS = ['*']
-#ALLOWED_HOSTS = ['.onrender.com'] #Modified before deployment in internet
 
 
 # Application definition
@@ -82,21 +80,21 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'vcape_db',
-        'USER': 'postgres',
-        'PASSWORD': '12345',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
 # DATABASES = {
-#     'default': dj_database_url.config(
-#         default=os.environ.get('DATABASE_URL')
-#     )
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'vcape_db',
+#         'USER': 'postgres',
+#         'PASSWORD': '12345',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
 # }
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL')
+    )
+}
 
 
 # Password validation
@@ -140,7 +138,6 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  #Added before deployment in internet
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage" #Added before deployment in internet
-#STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 
 # Default primary key field type
