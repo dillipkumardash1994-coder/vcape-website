@@ -18,7 +18,7 @@
 </section>
 
 <!-- ================= TEAM INTRO ================= -->
-<section class="bg-white">
+<!-- <section class="bg-white">
     <div class="max-w-5xl mx-auto px-6 py-20 text-center">
         <p class="text-slate-600 text-lg leading-relaxed">
             The strength of V-CAPE Mentorship lies in its people. Our team brings
@@ -26,7 +26,7 @@
             for mentorship to support learners at every stage of their journey.
         </p>
     </div>
-</section>
+</section> -->
 
 <!-- ================= LEADERSHIP TEAM ================= -->
 <section class="bg-[#F8FAFC]">
@@ -73,15 +73,34 @@
             max-w-5xl mx-auto">
 
             {% for member in advisors %}
-            <div class="bg-[#F8FAFC] p-6 rounded-xl text-center hover:shadow-lg transition">
+            <div class="bg-[#F8FAFC] p-6 rounded-xl text-center hover:shadow-lg transition cursor-pointer">
+                <div class="group relative bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition duration-300">
+
                 {% if member.photo %}
                 <img src="{{ member.photo.url }}"
-                     alt="{{ member.name }}"
-                     class="w-28 h-28 mx-auto rounded-full object-cover mb-4">
+                    alt="{{ member.name }}"
+                    class="w-full h-64 object-cover">
                 {% endif %}
 
-                <h4 class="font-semibold">{{ member.name }}</h4>
-                <p class="text-sm text-slate-600">{{ member.designation }}</p>
+                <div class="p-6 text-center">
+                    <h4 class="font-semibold">{{ member.name }}</h4>
+                    <p class="text-sm text-slate-600">{{ member.designation }}</p>
+                </div>
+
+                <!-- Hover Overlay -->
+                <div class="absolute inset-0 bg-white p-6 flex flex-col justify-center items-center 
+                            opacity-0 group-hover:opacity-100 transition duration-300 text-center">
+
+                    <h4 class="font-semibold mb-2">{{ member.name }}</h4>
+                    <p class="text-sm text-slate-600 mb-4">{{ member.designation }}</p>
+
+                    <p class="text-sm text-slate-700 line-clamp-4">
+                        {{ member.bio }}
+                    </p>
+
+                </div>
+
+            </div>
             </div>
             {% endfor %}
 
@@ -102,7 +121,7 @@
             max-w-5xl mx-auto">
 
             {% for member in mentors %}
-            <div class="bg-white p-6 rounded-xl text-center hover:shadow-lg transition">
+            <div class="bg-white p-6 rounded-xl text-center hover:shadow-lg transition cursor-pointer">
                 {% if member.photo %}
                 <img src="{{ member.photo.url }}"
                      alt="{{ member.name }}"

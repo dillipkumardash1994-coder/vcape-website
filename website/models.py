@@ -1,9 +1,10 @@
 from django.db import models
+from django.core.validators import FileExtensionValidator
 
 class SiteSettings(models.Model):
     institute_name = models.CharField(max_length=255)
     tagline = models.CharField(max_length=255, blank=True)
-    logo = models.ImageField(upload_to="site/", blank=True, null=True)
+    logo = models.ImageField(upload_to="site/", validators=[FileExtensionValidator(['jpg','jpeg','png','webp'])],blank=True,null=True)
 
     email = models.EmailField()
     phone = models.CharField(max_length=20, blank=True)
@@ -36,6 +37,11 @@ class AboutContent(models.Model):
     vision = models.TextField()
     mission = models.TextField()
 
+    def save(self, *args, **kwargs):
+        if not self.pk and AboutContent.objects.exists():
+            return
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return "About Page Content"
 
@@ -58,12 +64,11 @@ class TeamMember(models.Model):
         ('advisor', 'Advisory Board'),
         ('mentor', 'Mentorship Network'),
     ]
-
     name = models.CharField(max_length=150)
     designation = models.CharField(max_length=200)
     bio = models.TextField()
     role = models.CharField(max_length=50, choices=ROLE_CHOICES)
-    photo = models.ImageField(upload_to="team/", blank=True, null=True)
+    photo = models.ImageField(upload_to="team/", validators=[FileExtensionValidator(['jpg','jpeg','png','webp'])], blank=True, null=True)
     order = models.PositiveIntegerField(default=0)
 
     class Meta:

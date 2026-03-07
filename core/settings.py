@@ -22,8 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-d7nz8qn0abmiux6o=cur5ec5&=wj(!9lu_k#q-m3se61ng&nyj'
-SECRET_KEY = os.environ.get('SECRET_KEY') #Added before deployment in internet
+SECRET_KEY = 'django-insecure-d7nz8qn0abmiux6o=cur5ec5&=wj(!9lu_k#q-m3se61ng&nyj'
+# SECRET_KEY = os.environ.get('SECRET_KEY') #Added before deployment in internet
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -44,7 +44,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'website',
     'blog',
+    'axes',  # Security
 ]
+
+AUTHENTICATION_BACKENDS = [
+    'axes.backends.AxesStandaloneBackend',
+    'django.contrib.auth.backends.ModelBackend',]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,6 +59,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'axes.middleware.AxesMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -83,21 +89,21 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'vcape_db',
-#         'USER': 'postgres',
-#         'PASSWORD': '12345',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL')
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'vcape_db',
+        'USER': 'postgres',
+        'PASSWORD': '12345',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
 }
+# DATABASES = {
+#     'default': dj_database_url.config(
+#         default=os.environ.get('DATABASE_URL')
+#     )
+# }
 
 
 # Password validation
@@ -151,4 +157,26 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+## Below codes are for securty 
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    X_FRAME_OPTIONS = "DENY"
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SECURE_BROWSER_XSS_FILTER = True
+    CSRF_TRUSTED_ORIGINS = ["https://vcape-website.onrender.com",]
+    CSP_DEFAULT_SRC = ("'self'",)
+    CSP_STYLE_SRC = ("'self'", "https://cdn.jsdelivr.net")
+    CSP_SCRIPT_SRC = ("'self'", "https://cdn.jsdelivr.net")
+    AXES_FAILURE_LIMIT = 5
+    AXES_COOLOFF_TIME = 1
+    AXES_RESET_ON_SUCCESS = True
+    AXES_LOCK_OUT_BY_COMBINATION_USER_AND_IP = True
+    WHITENOISE_MAX_AGE = 31536000
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
