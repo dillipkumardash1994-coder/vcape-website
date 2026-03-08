@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'website',
     'blog',
+    'axes',
 ]
 
 AUTHENTICATION_BACKENDS = [
