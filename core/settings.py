@@ -48,6 +48,10 @@ INSTALLED_APPS = [
     'blog',
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'axes.backends.AxesStandaloneBackend',
+    'django.contrib.auth.backends.ModelBackend',]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",  # ✅ MOVE HERE
@@ -56,6 +60,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'axes.middleware.AxesMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
@@ -143,4 +148,26 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = '/vcape/media/'
+
+## Below codes are for securty 
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_HSTS_SECONDS = 31536000
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
+    X_FRAME_OPTIONS = "DENY"
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    SECURE_BROWSER_XSS_FILTER = True
+    CSRF_TRUSTED_ORIGINS = ["https://vcape-website.onrender.com",]
+    CSP_DEFAULT_SRC = ("'self'",)
+    CSP_STYLE_SRC = ("'self'", "https://cdn.jsdelivr.net")
+    CSP_SCRIPT_SRC = ("'self'", "https://cdn.jsdelivr.net")
+    AXES_FAILURE_LIMIT = 5
+    AXES_COOLOFF_TIME = 1
+    AXES_RESET_ON_SUCCESS = True
+    AXES_LOCK_OUT_BY_COMBINATION_USER_AND_IP = True
+    WHITENOISE_MAX_AGE = 31536000
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
