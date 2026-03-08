@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY') #Added before deployment in internet
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #Modified before deployment in internet
+DEBUG = False #Modified before deployment in internet
 
 ALLOWED_HOSTS = [
     ".onrender.com",
