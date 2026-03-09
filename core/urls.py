@@ -23,4 +23,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('secure-admin-panel/', admin.site.urls),
     path('', include('website.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    
+    # Force Django to serve media files in production (DEBUG=False)
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+]static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
