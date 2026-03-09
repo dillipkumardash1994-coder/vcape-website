@@ -32,6 +32,7 @@ ALLOWED_HOSTS = [
     ".onrender.com",
     "v-cape.com",
     "www.v-cape.com",
+    "https://vcape-website-5rex.onrender.com",
 ] #Modified before deployment in internet
 
 
@@ -161,7 +162,11 @@ if not DEBUG:
     X_FRAME_OPTIONS = "DENY"
     SECURE_CONTENT_TYPE_NOSNIFF = True
     SECURE_BROWSER_XSS_FILTER = True
-    CSRF_TRUSTED_ORIGINS = ["https://vcape-website.onrender.com",]
+    CSRF_TRUSTED_ORIGINS = [
+    "https://v-cape.com",
+    "https://www.v-cape.com",
+    "https://vcape-website-5rex.onrender.com"
+    ]
     CSP_DEFAULT_SRC = ("'self'",)
     CSP_STYLE_SRC = ("'self'", "https://cdn.jsdelivr.net")
     CSP_SCRIPT_SRC = ("'self'", "https://cdn.jsdelivr.net")
