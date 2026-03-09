@@ -23,7 +23,4 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('secure-admin-panel/', admin.site.urls),
     path('', include('website.urls')),
-]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
